@@ -1,7 +1,7 @@
 # mihomo-in-WSL2
 在WSL2里配置mihomo
 
-```
+```shell
 mkdir -p /etc/mihomo
 cd /etc/mihomo
 wget https://github.com/MetaCubeX/mihomo/releases/download/Prerelease-Alpha/mihomo-linux-amd64-v2-go123-alpha-df1c5e5.gz
@@ -10,12 +10,13 @@ mv mihomo-linux-amd64-v2-go123-alpha-df1c5e5 /usr/local/bin/mihomo
 chmod +x /usr/local/bin/mihomo
 ```
 
-``` # mihomo  -v
+```shell
+# mihomo  -v
 Mihomo Meta alpha-df1c5e5 linux amd64 with go1.23.12 Tue Apr 28 02:26:58 UTC 2026
 Use tags: with_gvisor
 ```
 
-```
+```shell
 cd /etc/mihomo
 wget https://github.com/haishanh/yacd/releases/latest/download/yacd.tar.xz
 tar -xf yacd.tar.xz
@@ -23,7 +24,8 @@ mv public/* ./ui/
 touch config.yaml
 ```
 
-``` config.yaml
+```shell
+# cat config.yaml
 disable-ipv6: true
 socks-port: 1080
 allow-lan: true
@@ -207,7 +209,8 @@ rules:
   - MATCH,PROXY
 ```
 
-``` /etc/systemd/system/mihomo.service
+```shell
+# cat /etc/systemd/system/mihomo.service
 [Unit]
 Description=Mihomo Proxy Service
 After=network.target
@@ -228,7 +231,7 @@ RestartSec=5s
 WantedBy=multi-user.target
 ```
 
-```
+```shell
 systemctl daemon-reload
 systemctl enable mihomo.service
 systemctl start mihomo.service
